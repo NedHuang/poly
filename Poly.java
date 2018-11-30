@@ -34,8 +34,62 @@ public class Poly{
     	this.last = t;
     }
 
-    //methods for Poly
+    public String toString(){
+    	String res = "";
+    	Term ptr = this.first;
+    	StringBuffer sb = new StringBuffer();
+    	while(ptr != null){
+    		System.out.println("sb.coef: " + Integer.toString(ptr.coef)) ;
+    		if(ptr.getCoef() == 0){continue;}
+    		if(ptr.getCoef() > 0){
+    			sb.append('+');
+    			sb.append(Integer.toString(ptr.coef));
+	    		sb.append('x');
+	    		sb.append(Integer.toString(ptr.expo));
+    		}
+    		else{
+    			// sb.append('-');
+    			sb.append(Integer.toString(ptr.coef));
+	    		sb.append('x');
+	    		sb.append(Integer.toString(ptr.expo));
+    		}
+    		ptr = ptr.next;
+    	}
+    	if(sb.charAt(0) == '+'){
+    		sb.deleteCharAt(0);
+    	}
+   //  	while(ptr != null){
+			// if(sb.length() != 0 && sb.charAt(sb.length()-1) == '+'){
+			// 	System.out.println(".....");
+			// 	sb.deleteCharAt(sb.length()-1);
+			// 	sb.append(Integer.toString(ptr.coef));
+	  //   		sb.append('x');
+	  //   		sb.append(Integer.toString(ptr.expo));
+	  //   		sb.append('+');
+	  //   		ptr = ptr.getNext();
+			// }
+   //  		else if(ptr.coef == 0){
+   //  			continue;
+   //  		}
+   //  		else{
+	  //   		sb.append(Integer.toString(ptr.coef));
+	  //   		sb.append('x');
+	  //   		sb.append(Integer.toString(ptr.expo));
+	  //   		sb.append('+');
+	  //   		ptr = ptr.getNext();
+   //  		}
+   //  	}
+   //  	sb.deleteCharAt(sb.length()-1);
+    	return sb.toString();
+    }
 
+    // Getters and Setters
+    public Term getFirst(){return first;}
+    public Term getLast(){return last;}
+    public void setFirst(Term first){this.first = first;}
+    public void setLast(Term last){this.last = last;}
+    
+    //methods for Poly
     public boolean isZero(){
     	return (this.first.coef == 0 && this.last.coef == 0 && first.next == null) ? true : false;
     }
@@ -66,9 +120,9 @@ public class Poly{
 
     public static void main(String []args){
     	System.out.println("Hello World");
-        Term t = new Term(1,2);
+        Term ttt = new Term(-1,2);
         Term tt = new Term(3,4);
-        Term ttt = new Term(5,6);
+        Term t = new Term(5,6);
         t.setNext(tt);
         tt.setNext(ttt);
         System.out.println(t.coef);
@@ -83,10 +137,11 @@ public class Poly{
         // Term temp = p.first;
         Poly q = p.minus();
         Term temp = q.first;
-        while(temp != null){
-        	System.out.print(Integer.toString(temp.coef));
-        	temp = temp.getNext();
-        }
+        // while(temp != null){
+        // 	System.out.print(Integer.toString(temp.coef));
+        // 	temp = temp.getNext();
+        // }
+        System.out.println(q);
 
         // Poly p = new Poly();
     }
